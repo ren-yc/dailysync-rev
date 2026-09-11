@@ -6,7 +6,7 @@ on:
       sync_command:
         description: "同步命令：普通 sync 只同步活动；sync_all 同步活动+Wellness；sync_wellness 只同步 Wellness"
         required: true
-        default: "sync_cn"
+        default: "sync_all_cn_to_global"
         type: choice
         options:
           - sync_cn
@@ -52,7 +52,7 @@ jobs:
           node-version: '18'
           cache: 'yarn'
       - run: yarn
-      - run: yarn ${{ github.event.inputs.sync_command || 'sync_cn' }}
+      - run: yarn ${{ github.event.inputs.sync_command || 'sync_all_cn_to_global' }}
         timeout-minutes: 15
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
